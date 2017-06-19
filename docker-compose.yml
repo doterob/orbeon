@@ -1,0 +1,17 @@
+version: "2"
+services:
+  orbeon-db:
+    build:
+      context: ./orbeon-db
+
+  orbeon-web:
+    build:
+      context: ./orbeon-web
+    depends_on:
+      - orbeon-db
+    environment:
+      - DB_USER=orbeon
+      - DB_PASS=password
+      - DB_NAME=ORBEON
+    expose:
+      - "8080"
